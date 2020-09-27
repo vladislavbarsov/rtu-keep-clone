@@ -10,7 +10,7 @@ abstract class NoteDatabase : RoomDatabase(){
     abstract fun noteItemDao(): NoteItemDao
 }
 
-object NoteDataBase {
+object Database {
     private var instance: NoteDatabase? = null
 
     fun getInstance(context: Context) = instance ?: Room.databaseBuilder(

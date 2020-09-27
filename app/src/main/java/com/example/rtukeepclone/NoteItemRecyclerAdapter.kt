@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.note_item.view.*
 
-class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>) :
+class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>, private val listener: AdapterClickListener) :
         RecyclerView.Adapter<NoteItemRecyclerAdapter.NoteViewHolder> (){
 
         class NoteViewHolder(view: View): RecyclerView.ViewHolder(view)
@@ -27,7 +27,7 @@ class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>) :
                 noteView.cardSubjectText.text = note.noteSubject
                 noteView.cardBodyText.text = note.noteText
                 noteView.cardDeleteBtn.setOnClickListener{
-
+                        listener.deleteNote(notes[position])
                 }
                 noteView.setOnClickListener{
                         Toast.makeText(context, "${notes[position]}", Toast.LENGTH_SHORT).show()

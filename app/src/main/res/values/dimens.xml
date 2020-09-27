@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardRadius">5dp</dimen>
+    <dimen name="cardMargin">5dp</dimen>
+    <dimen name="textMargin">10dp</dimen>
+    <dimen name="textSubjectSize">17sp</dimen>
+    <dimen name="textBodySize">15sp</dimen>
+    <dimen name="deleteBtnPadding">12dp</dimen>
+    <dimen name="buttonMargin">10dp</dimen>
+    <dimen name="listMargin">10dp</dimen>
+</resources>

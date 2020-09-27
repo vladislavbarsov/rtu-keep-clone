@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RTU Keep Clone</string>
+    <string name="test_subject">Random Subject</string>
+    <string name="test_text">This is some random text</string>
+    <string name="newNoteHintText">Enter new note here</string>
+    <string name="enterNewNoteBtnText">Add New Note</string>
 </resources>

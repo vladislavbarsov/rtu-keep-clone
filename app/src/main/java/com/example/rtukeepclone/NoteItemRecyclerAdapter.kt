@@ -24,15 +24,13 @@ class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>) :
                 val noteView = holder.itemView
                 val context = noteView.context
 
-                val toast = Toast.makeText(context, "Will do later", Toast.LENGTH_SHORT)
-
                 noteView.cardSubjectText.text = note.noteSubject
                 noteView.cardBodyText.text = note.noteText
                 noteView.cardDeleteBtn.setOnClickListener{
-                        toast.show()
+
                 }
                 noteView.setOnClickListener{
-                        toast.show()
+                        Toast.makeText(context, "${notes[position]}", Toast.LENGTH_SHORT).show()
                 }
         }
 }

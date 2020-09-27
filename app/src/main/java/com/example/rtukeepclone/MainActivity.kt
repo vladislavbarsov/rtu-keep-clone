@@ -1,7 +1,7 @@
 package com.example.rtukeepclone
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,10 +23,16 @@ class MainActivity : AppCompatActivity() {
         noteList.adapter = adapter
 
         newNoteBtn.setOnClickListener { addNewNote() }
-
     }
 
     private fun addNewNote(){
-        Toast.makeText(this, "Will do later", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, DetailActivity::class.java)
+            .putExtra(EXTRA_ID, REQUEST_FROM)
+        startActivity(intent)
+    }
+
+    companion object {
+        const val EXTRA_ID = "com.example.rtuKeepClone_note_id"
+        const val REQUEST_FROM = "MainActivity"
     }
 }

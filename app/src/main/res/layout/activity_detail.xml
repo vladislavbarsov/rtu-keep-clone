@@ -64,7 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/buttonMargin"
         android:padding="0dp"
+        android:textAlignment="viewStart"
         android:text="@string/shareBtn"
+        android:textColor="@color/goldButtonBackgroundColor"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintStart_toStartOf="parent" />
@@ -75,8 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/buttonMargin"
         android:padding="0dp"
+        android:textAlignment="viewEnd"
         android:text="@string/colorBtn"
-        android:backgroundTint="@color/colorCardCoral"
+        android:textColor="@color/colorCardCoral"
+        android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -86,6 +90,9 @@
         android:layout_height="70dp"
         android:layout_margin="@dimen/buttonMargin"
         android:text="@string/saveBtn"
+        android:textSize="@dimen/textSubjectSize"
+        android:backgroundTint="@color/goldButtonBackgroundColor"
+        android:textColor="@color/goldButtonTextColor"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        window.decorView.setBackgroundColor(ContextCompat.getColor(this, R.color.activityBackgroundColor))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val requestFrom = intent.getStringExtra(ACTIVITY_ID) ?: "DetailActivity"
@@ -72,12 +73,15 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun updateColor(colorPosition: Int){
-        when (colorPosition){
-            0 -> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardCoral))
-            1-> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardTeal))
-            2 -> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardGreen))
-            else -> "not working"
+        val color = when (colorPosition){
+            0 -> ContextCompat.getColor(this, R.color.colorCardCoral)
+            1 -> ContextCompat.getColor(this, R.color.colorCardTeal)
+            2 -> ContextCompat.getColor(this, R.color.colorCardGreen)
+            else -> ContextCompat.getColor(this, R.color.colorCardGreen)
         }
+        Log.e("color is:", color.toString())
+        colorBtn.setTextColor(color)
+        detailNoteCard.setBackgroundColor(color)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

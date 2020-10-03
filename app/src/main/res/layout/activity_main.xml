@@ -13,8 +13,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/buttonMargin"
     android:text="@string/enterNewNoteBtnText"
+    android:textSize="@dimen/textSubjectSize"
     app:layout_constraintTop_toTopOf="parent"
-    ></Button>
+    android:backgroundTint="@color/goldButtonBackgroundColor"
+    android:textColor="@color/goldButtonTextColor"></Button>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noteList"

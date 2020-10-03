@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AdapterClickListener {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.decorView.setBackgroundColor(ContextCompat.getColor(this, R.color.activityBackgroundColor))
 
         notes.addAll(notesDatabase.noteItemDao().getAllNotes())
         adapter = NoteItemRecyclerAdapter(notes, this)

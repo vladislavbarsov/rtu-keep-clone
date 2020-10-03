@@ -18,6 +18,7 @@ class DetailActivity : AppCompatActivity() {
     private val notesDatabase get() = Database.getInstance(this)
     private lateinit var noteToEdit: NoteItem
     private var noteId: Long = 0
+    private var editNoteColor: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,7 @@ class DetailActivity : AppCompatActivity() {
         Log.e("mode is: ", requestFrom)
         noteId = intent.getLongExtra(EXTRA_ID, 0)
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
+        editNoteColor = noteToEdit.noteColor
 
         if (requestFrom != MAIN_ACTIVITY){
             noteEditSubject.setText(noteToEdit.noteSubject)
@@ -43,7 +45,8 @@ class DetailActivity : AppCompatActivity() {
         notesDatabase.noteItemDao().updateNote(
             noteToEdit.copy(
                 noteSubject = noteEditSubject.text.toString(),
-                noteText = noteEditBodyText.text.toString()
+                noteText = noteEditBodyText.text.toString(),
+                noteColor = editNoteColor
             )
         )
         val intent = Intent().putExtra(EXTRA_ID, noteId)
@@ -82,6 +85,7 @@ class DetailActivity : AppCompatActivity() {
         Log.e("color is:", color.toString())
         colorBtn.setTextColor(color)
         detailNoteCard.setCardBackgroundColor(color)
+        editNoteColor = color
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -7,6 +7,7 @@ import androidx.room.*
 data class NoteItem (
     val noteSubject: String,
     val noteText: String,
+    val noteColor: Int,
     @PrimaryKey(autoGenerate = true) var uid: Long = 0
 )
 

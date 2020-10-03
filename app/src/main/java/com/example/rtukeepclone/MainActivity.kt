@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     }
 
     private fun addNewNote(){
-        val blankNote = NoteItem("", "")
+        val defaultColor = ContextCompat.getColor(this, R.color.colorCardCoral)
+        val blankNote = NoteItem("", "", defaultColor)
         blankNote.uid = notesDatabase.noteItemDao().insertAllNotes(blankNote).first()
         //Log.e("blnak note ID is: ", "${blankNote.uid}")
         val intent = Intent(this, DetailActivity::class.java)

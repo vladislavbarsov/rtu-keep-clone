@@ -7,4 +7,7 @@
     <string name="editSubjectHint">Enter Note Subject...</string>
     <string name="saveBtn">Save Note</string>
     <string name="editBodyTextHint">Enter Note Body Text...</string>
+    <string name="detailsPageLabel">Edit Your Note</string>
+    <string name="mainPageLabel">All your Notes</string>
+    <string name="shareBtn">Share</string>
 </resources>

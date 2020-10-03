@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/colorCard"
+    app:cardBackgroundColor="@color/colorCardCoral"
     app:cardCornerRadius="@dimen/cardRadius"
-    android:layout_margin="@dimen/cardMargin">
+    android:layout_margin="@dimen/cardMargin"
+    android:id="@+id/noteCard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

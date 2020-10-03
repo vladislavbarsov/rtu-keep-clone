@@ -35,8 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/textMargin"
-        android:text="Share"
+        android:text="@string/shareBtn"
         app:layout_constraintBottom_toTopOf="@+id/saveBtn"/>
+
 
     <Button
         android:id="@+id/saveBtn"

@@ -26,6 +26,7 @@ class NoteItemRecyclerAdapter (
 
                 noteView.cardSubjectText.text = note.noteSubject
                 noteView.cardBodyText.text = note.noteText
+
                 noteView.cardDeleteBtn.setOnClickListener{
                         listener.deleteNote(note)
                 }

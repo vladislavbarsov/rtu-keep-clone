@@ -6,7 +6,9 @@
     <dimen name="textSubjectSize">17sp</dimen>
     <dimen name="textBodySize">15sp</dimen>
     <dimen name="deleteBtnPadding">12dp</dimen>
-    <dimen name="buttonMargin">10dp</dimen>
+    <dimen name="buttonMargin">5dp</dimen>
     <dimen name="listMargin">10dp</dimen>
     <dimen name="btnPadding">21dp</dimen>
+    <dimen name="detailSubjectSize">20sp</dimen>
+    <dimen name="detailTextBodySize">19sp</dimen>
 </resources>

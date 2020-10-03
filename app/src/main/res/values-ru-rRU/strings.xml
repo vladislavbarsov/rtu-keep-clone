@@ -10,4 +10,5 @@
     <string name="detailsPageLabel">Редактировать заметку</string>
     <string name="mainPageLabel">Все заметки</string>
     <string name="shareBtn">Поделиться</string>
+    <string name="colorBtn">Color</string>
 </resources>

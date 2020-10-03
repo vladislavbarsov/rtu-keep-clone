@@ -1,14 +1,17 @@
 package com.example.rtukeepclone
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.rtukeepclone.MainActivity.Companion.ACTIVITY_ID
 import com.example.rtukeepclone.MainActivity.Companion.EXTRA_ID
 import kotlinx.android.synthetic.main.activity_detail.*
+
 
 class DetailActivity : AppCompatActivity() {
 
@@ -32,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
         }
         saveBtn.setOnClickListener { updateNote() }
         shareBtn.setOnClickListener { shareNote() }
-
+        colorBtn.setOnClickListener { changeNoteColor() }
     }
 
     private fun updateNote(){
@@ -55,6 +58,26 @@ class DetailActivity : AppCompatActivity() {
             type = "text/plain"
         }
         startActivity(sendIntent)
+    }
+
+    private fun changeNoteColor(){
+        val builder = AlertDialog.Builder(this)
+        val colors = arrayOf("Coral", "Teal", "Green")
+        builder.setTitle("Choose Color")
+            .setItems(colors) {dialog, which ->
+                updateColor(which)
+            }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun updateColor(colorPosition: Int){
+        when (colorPosition){
+            0 -> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardCoral))
+            1-> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardTeal))
+            2 -> detailNoteCard.setCardBackgroundColor(ContextCompat.getColor(this, R.color.colorCardGreen))
+            else -> "not working"
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

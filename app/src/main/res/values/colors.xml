@@ -5,6 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorCardCoral">#E18875</color>
     <color name="colorCardTeal">#00BCD4</color>
-    <color name="colorCardOrange">#FF9800</color>
     <color name="colorCardGreen">#8BC34A</color>
+    <color name="colorCardTextBackdrop">#1A000000</color>
+    <color name="detailPageCardTextColor">#99000000</color>
 </resources>

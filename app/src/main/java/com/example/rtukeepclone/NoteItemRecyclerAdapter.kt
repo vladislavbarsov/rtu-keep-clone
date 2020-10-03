@@ -3,11 +3,12 @@ package com.example.rtukeepclone
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.note_item.view.*
 
-class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>, private val listener: AdapterClickListener) :
+class NoteItemRecyclerAdapter (
+        private val notes: MutableList<NoteItem>,
+        private val listener: AdapterClickListener) :
         RecyclerView.Adapter<NoteItemRecyclerAdapter.NoteViewHolder> (){
 
         class NoteViewHolder(view: View): RecyclerView.ViewHolder(view)
@@ -22,15 +23,14 @@ class NoteItemRecyclerAdapter (private val notes: MutableList<NoteItem>, private
         override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
                 val note = notes[position]
                 val noteView = holder.itemView
-                val context = noteView.context
 
                 noteView.cardSubjectText.text = note.noteSubject
                 noteView.cardBodyText.text = note.noteText
                 noteView.cardDeleteBtn.setOnClickListener{
-                        listener.deleteNote(notes[position])
+                        listener.deleteNote(note)
                 }
                 noteView.setOnClickListener{
-                        Toast.makeText(context, "${notes[position]}", Toast.LENGTH_SHORT).show()
+                        listener.clickedNote(notes[position])
                 }
         }
 }

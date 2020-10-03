@@ -26,16 +26,24 @@
         android:inputType="textMultiLine"
         android:textAlignment="gravity"
         android:gravity="top|left"
-        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintBottom_toTopOf="@+id/shareBtn"
         app:layout_constraintTop_toBottomOf="@+id/noteEditSubject"
         tools:layout_editor_absoluteX="10dp" />
+
+    <Button
+        android:id="@+id/shareBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/textMargin"
+        android:text="Share"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"/>
 
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/textMargin"
+        android:padding="@dimen/btnPadding"
         android:text="@string/saveBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="10dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

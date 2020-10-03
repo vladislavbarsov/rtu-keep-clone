@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         setContentView(R.layout.activity_main)
 
         notes.addAll(notesDatabase.noteItemDao().getAllNotes())
-
         adapter = NoteItemRecyclerAdapter(notes, this)
         noteList.adapter = adapter
 
@@ -30,27 +29,39 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     private fun addNewNote(){
         val blankNote = NoteItem("", "")
         blankNote.uid = notesDatabase.noteItemDao().insertAllNotes(blankNote).first()
-        Log.e("blnak note ID is: ", "${blankNote.uid}")
+        //Log.e("blnak note ID is: ", "${blankNote.uid}")
         val intent = Intent(this, DetailActivity::class.java)
             .putExtra(ACTIVITY_ID, "MainActivity")
             .putExtra(EXTRA_ID, blankNote.uid)
         notes.add(blankNote)
         startActivityForResult(intent, REQUEST_CODE_DETAILS)
+        Log.e("array size", notes.size.toString())
     }
 
     override fun deleteNote(note: NoteItem) {
+        val position = notes.indexOfFirst { it.uid == note.uid }
+        notes.removeAt(position)
         notesDatabase.noteItemDao().deleteNote(note)
+        adapter.notifyItemRemoved(position)
+        Log.e("array size", notes.size.toString())
+    }
+
+    override fun clickedNote(note: NoteItem) {
+        val intent = Intent(this, DetailActivity::class.java)
+            .putExtra(EXTRA_ID, note.uid)
+        startActivityForResult(intent, REQUEST_CODE_DETAILS)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_DETAILS && resultCode == Activity.RESULT_OK && data != null) {
+        if (
+            requestCode == REQUEST_CODE_DETAILS &&
+            resultCode == Activity.RESULT_OK &&
+            data != null) {
             val noteId = data.getLongExtra(EXTRA_ID, 0)
-            Log.e("Updated note UID is: ", "$noteId")
             val note = notesDatabase.noteItemDao().getNoteById(noteId)
-            val position = notes.indexOfFirst { it.uid == note.uid } // is -1
+            val position = notes.indexOfFirst{ it.uid == note.uid }
             notes[position] = note
-            Log.e("the item is: ", "$position")
             adapter.notifyItemChanged(position)
         }
     }
@@ -60,8 +71,21 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         const val ACTIVITY_ID = "MainActivity"
         const val REQUEST_CODE_DETAILS = 1234
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (!notes.isEmpty()){
+            val lastNote = notes[notes.size - 1]
+            if (lastNote.noteSubject == "" && lastNote.noteText == ""){
+                notes.remove(lastNote)
+                notesDatabase.noteItemDao().deleteNote(lastNote)
+            }
+        }
+    }
 }
 
 interface AdapterClickListener {
     fun deleteNote(note: NoteItem)
+    fun clickedNote(note: NoteItem)
 }

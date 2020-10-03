@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
 
         if (requestFrom == MAIN_ACTIVITY){
-            saveBtn.setOnClickListener { saveNewNote() }
+            saveBtn.setOnClickListener { updateNote() }
         } else {
             noteEditSubject.setText(noteToEdit.noteSubject)
             noteEditBodyText.setText(noteToEdit.noteText)
@@ -36,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-    private fun saveNewNote(){
+    private fun updateNote(){
         notesDatabase.noteItemDao().updateNote(
             noteToEdit.copy(
                 noteSubject = noteEditSubject.text.toString(),
@@ -46,10 +46,6 @@ class DetailActivity : AppCompatActivity() {
         val intent = Intent().putExtra(EXTRA_ID, noteId)
         setResult(Activity.RESULT_OK, intent)
         finish()
-    }
-
-    private fun updateNote(){
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

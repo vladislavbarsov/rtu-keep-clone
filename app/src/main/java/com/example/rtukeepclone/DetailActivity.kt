@@ -26,13 +26,12 @@ class DetailActivity : AppCompatActivity() {
         noteId = intent.getLongExtra(EXTRA_ID, 0)
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
 
-        if (requestFrom == MAIN_ACTIVITY){
-            saveBtn.setOnClickListener { updateNote() }
-        } else {
+        if (requestFrom != MAIN_ACTIVITY){
             noteEditSubject.setText(noteToEdit.noteSubject)
             noteEditBodyText.setText(noteToEdit.noteText)
-            saveBtn.setOnClickListener{ updateNote() }
         }
+        saveBtn.setOnClickListener { updateNote() }
+        shareBtn.setOnClickListener { shareNote() }
 
     }
 
@@ -46,6 +45,16 @@ class DetailActivity : AppCompatActivity() {
         val intent = Intent().putExtra(EXTRA_ID, noteId)
         setResult(Activity.RESULT_OK, intent)
         finish()
+    }
+
+    private fun shareNote(){
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT,
+            "${noteEditSubject.text}\n${noteEditBodyText.text}")
+            type = "text/plain"
+        }
+        startActivity(sendIntent)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

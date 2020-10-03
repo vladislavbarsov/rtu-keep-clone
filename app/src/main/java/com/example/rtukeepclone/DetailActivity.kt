@@ -81,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
         }
         Log.e("color is:", color.toString())
         colorBtn.setTextColor(color)
-        detailNoteCard.setBackgroundColor(color)
+        detailNoteCard.setCardBackgroundColor(color)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -15,7 +15,7 @@
         app:cardCornerRadius="@dimen/cardRadius"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/shareBtn"
-        android:backgroundTint="@color/colorCardCoral">
+        app:cardBackgroundColor="@color/colorCardCoral">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

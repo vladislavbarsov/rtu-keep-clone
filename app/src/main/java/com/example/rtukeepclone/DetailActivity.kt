@@ -27,7 +27,6 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val requestFrom = intent.getStringExtra(ACTIVITY_ID) ?: "DetailActivity"
-        Log.e("mode is: ", requestFrom)
         noteId = intent.getLongExtra(EXTRA_ID, 0)
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
         editNoteColor = noteToEdit.noteColor
@@ -35,6 +34,8 @@ class DetailActivity : AppCompatActivity() {
         if (requestFrom != MAIN_ACTIVITY){
             noteEditSubject.setText(noteToEdit.noteSubject)
             noteEditBodyText.setText(noteToEdit.noteText)
+            detailNoteCard.setCardBackgroundColor(editNoteColor)
+            colorBtn.setTextColor(editNoteColor)
         }
         saveBtn.setOnClickListener { updateNote() }
         shareBtn.setOnClickListener { shareNote() }

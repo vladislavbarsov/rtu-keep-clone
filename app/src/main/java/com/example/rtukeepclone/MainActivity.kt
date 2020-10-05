@@ -3,7 +3,6 @@ package com.example.rtukeepclone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -31,14 +30,13 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     private fun addNewNote(){
         val defaultColor = ContextCompat.getColor(this, R.color.colorCardCoral)
         val blankNote = NoteItem("", "", defaultColor)
+        notes.add(0, blankNote)
         blankNote.uid = notesDatabase.noteItemDao().insertAllNotes(blankNote).first()
-        //Log.e("blnak note ID is: ", "${blankNote.uid}")
         val intent = Intent(this, DetailActivity::class.java)
             .putExtra(ACTIVITY_ID, "MainActivity")
             .putExtra(EXTRA_ID, blankNote.uid)
-        notes.add(blankNote)
+        //notes.add(blankNote)
         startActivityForResult(intent, REQUEST_CODE_DETAILS)
-        Log.e("array size", notes.size.toString())
     }
 
     override fun deleteNote(note: NoteItem) {
@@ -46,7 +44,6 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         notes.removeAt(position)
         notesDatabase.noteItemDao().deleteNote(note)
         adapter.notifyItemRemoved(position)
-        Log.e("array size", notes.size.toString())
     }
 
     override fun clickedNote(note: NoteItem) {
@@ -77,7 +74,6 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
 
     override fun onResume() {
         super.onResume()
-
         if (!notes.isEmpty()){
             val lastNote = notes[notes.size - 1]
             if (lastNote.noteSubject == "" && lastNote.noteText == ""){

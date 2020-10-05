@@ -28,6 +28,7 @@ class DetailActivity : AppCompatActivity() {
 
         val requestFrom = intent.getStringExtra(ACTIVITY_ID) ?: "DetailActivity"
         noteId = intent.getLongExtra(EXTRA_ID, 0)
+        Log.e("received uid: ", noteId.toString())
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
         editNoteColor = noteToEdit.noteColor
 

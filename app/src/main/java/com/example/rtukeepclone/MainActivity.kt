@@ -3,6 +3,7 @@ package com.example.rtukeepclone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         window.decorView.setBackgroundColor(ContextCompat.getColor(this, R.color.activityBackgroundColor))
 
         notes.addAll(notesDatabase.noteItemDao().getAllNotes())
+        notes.sortByDescending { it.uid }
         adapter = NoteItemRecyclerAdapter(notes, this)
         noteList.adapter = adapter
 
@@ -30,12 +32,11 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     private fun addNewNote(){
         val defaultColor = ContextCompat.getColor(this, R.color.colorCardCoral)
         val blankNote = NoteItem("", "", defaultColor)
-        notes.add(0, blankNote)
         blankNote.uid = notesDatabase.noteItemDao().insertAllNotes(blankNote).first()
+        notes.add(blankNote)
         val intent = Intent(this, DetailActivity::class.java)
             .putExtra(ACTIVITY_ID, "MainActivity")
             .putExtra(EXTRA_ID, blankNote.uid)
-        //notes.add(blankNote)
         startActivityForResult(intent, REQUEST_CODE_DETAILS)
     }
 
@@ -64,6 +65,19 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
             notes[position] = note
             adapter.notifyItemChanged(position)
         }
+        checkForEmptyNote()
+        Log.e("onResult", "yes")
+    }
+
+    private fun checkForEmptyNote(){
+        if (!notes.isEmpty()){
+            val lastNote = notes[0]
+            Log.e("last note is: ", lastNote.toString())
+            if (lastNote.noteSubject == "" && lastNote.noteText == ""){
+                notes.remove(lastNote)
+                notesDatabase.noteItemDao().deleteNote(lastNote)
+            }
+        }
     }
 
     companion object {
@@ -74,13 +88,10 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
 
     override fun onResume() {
         super.onResume()
-        if (!notes.isEmpty()){
-            val lastNote = notes[notes.size - 1]
-            if (lastNote.noteSubject == "" && lastNote.noteText == ""){
-                notes.remove(lastNote)
-                notesDatabase.noteItemDao().deleteNote(lastNote)
-            }
-        }
+        adapter.notifyDataSetChanged()
+        notes.sortByDescending { it.uid }
+        checkForEmptyNote()
+        Log.e("onResume", "yes")
     }
 }
 

@@ -3,7 +3,6 @@ package com.example.rtukeepclone
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -66,13 +65,11 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
             adapter.notifyItemChanged(position)
         }
         checkForEmptyNote()
-        Log.e("onResult", "yes")
     }
 
     private fun checkForEmptyNote(){
         if (!notes.isEmpty()){
             val lastNote = notes[0]
-            Log.e("last note is: ", lastNote.toString())
             if (lastNote.noteSubject == "" && lastNote.noteText == ""){
                 notes.remove(lastNote)
                 notesDatabase.noteItemDao().deleteNote(lastNote)
@@ -91,7 +88,6 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         adapter.notifyDataSetChanged()
         notes.sortByDescending { it.uid }
         checkForEmptyNote()
-        Log.e("onResume", "yes")
     }
 }
 

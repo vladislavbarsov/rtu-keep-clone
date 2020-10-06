@@ -4,7 +4,6 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -28,7 +27,6 @@ class DetailActivity : AppCompatActivity() {
 
         val requestFrom = intent.getStringExtra(ACTIVITY_ID) ?: "DetailActivity"
         noteId = intent.getLongExtra(EXTRA_ID, 0)
-        Log.e("received uid: ", noteId.toString())
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
         editNoteColor = noteToEdit.noteColor
 
@@ -84,7 +82,6 @@ class DetailActivity : AppCompatActivity() {
             2 -> ContextCompat.getColor(this, R.color.colorCardGreen)
             else -> ContextCompat.getColor(this, R.color.colorCardGreen)
         }
-        Log.e("color is:", color.toString())
         colorBtn.setTextColor(color)
         detailNoteCard.setCardBackgroundColor(color)
         editNoteColor = color

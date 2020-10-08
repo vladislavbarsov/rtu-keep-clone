@@ -58,7 +58,7 @@ class DetailActivity : AppCompatActivity() {
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT,
-            "${noteEditSubject.text}\n${noteEditBodyText.text}")
+            "${noteEditSubject.text}\n\n${noteEditBodyText.text}")
             type = "text/plain"
         }
         startActivity(sendIntent)

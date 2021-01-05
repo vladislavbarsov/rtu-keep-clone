@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Custom">
+        <item name="colorPrimary">@color/menuColorPrimary</item>
+        <item name="colorPrimaryDark">@color/menuColorPrimaryDark</item>
+        <item name="colorAccent">@color/detailPageCardTextColor</item>
+    </style>
+
 </resources>

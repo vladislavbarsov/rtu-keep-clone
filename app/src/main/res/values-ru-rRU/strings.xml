@@ -1,0 +1,14 @@
+<resources>
+<string name="app_name">RTU Keep Clone</string>
+<string name="test_subject">Заголовок</string>
+<string name="test_text">Текст</string>
+<string name="newNoteHintText">Новая заметка</string>
+<string name="enterNewNoteBtnText">Добавить новую заметку</string>
+<string name="editSubjectHint">Добавить заголовок</string>
+<string name="saveBtn">Сохранить заметку</string>
+<string name="editBodyTextHint">Добавить текст</string>
+<string name="detailsPageLabel">Редактировать заметку</string>
+<string name="mainPageLabel">Все заметки</string>
+<string name="shareBtn">Поделиться</string>
+<string name="colorBtn">Цвет</string>
+</resources>

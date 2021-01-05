@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RTU Keep Clone</string>
+    <string name="test_subject">Virsraksts</string>
+    <string name="test_text">Teksts</string>
+    <string name="newNoteHintText">Ievadīt jaunu piezīmi</string>
+    <string name="enterNewNoteBtnText">Pievienot jaunu piezīmi</string>
+    <string name="editSubjectHint">Pievienot virsrakstu</string>
+    <string name="saveBtn">Saglabāt piezīmi</string>
+    <string name="editBodyTextHint">Pievienot piezīmes tekstu</string>
+    <string name="detailsPageLabel">Rediģēt piezīmi</string>
+    <string name="mainPageLabel">Visas piezīmes</string>
+    <string name="shareBtn">Dalīties</string>
+    <string name="colorBtn">Krāsa</string>
+</resources>

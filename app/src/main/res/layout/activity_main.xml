@@ -15,16 +15,18 @@ android:padding="@dimen/buttonMargin">
     android:text="@string/enterNewNoteBtnText"
     android:textSize="@dimen/textSubjectSize"
     app:layout_constraintTop_toTopOf="parent"
-    android:backgroundTint="@color/goldButtonBackgroundColor"
-    android:textColor="@color/goldButtonTextColor"></Button>
+    android:background="@color/goldButtonBackgroundColor"
+    android:textColor="@color/goldButtonTextColor"/>
 
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/noteList"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/newNoteBtn"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:spanCount="2"
     tools:layout_editor_absoluteX="5dp" />
 

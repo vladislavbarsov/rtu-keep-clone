@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/noteCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/colorCardCoral"
-    app:cardCornerRadius="@dimen/cardRadius"
     android:layout_margin="@dimen/cardMargin"
-    android:id="@+id/noteCard">
+    app:cardBackgroundColor="@color/colorCardCoral"
+    app:cardCornerRadius="@dimen/cardRadius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,30 +22,30 @@
             android:padding="@dimen/deleteBtnPadding"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"></ImageView>
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/cardSubjectText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/test_subject"
             android:layout_margin="@dimen/textMargin"
             android:textStyle="bold"
             android:textSize="@dimen/textSubjectSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cardDeleteBtn"
-            ></TextView>
+            tools:text="@string/test_subject"/>
 
         <TextView
             android:id="@+id/cardBodyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/test_text"
             android:layout_margin="@dimen/textMargin"
             android:textSize="@dimen/textBodySize"
             app:layout_constraintTop_toBottomOf="@+id/cardSubjectText"
-            app:layout_constraintBottom_toBottomOf="parent"></TextView>
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/test_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

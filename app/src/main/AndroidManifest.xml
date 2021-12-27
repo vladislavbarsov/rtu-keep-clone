@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Custom">
         <activity android:name=".DetailActivity"
-            android:label="@string/detailsPageLabel"></activity>
+            android:label="@string/detailsPageLabel"/>
         <activity android:name=".MainActivity"
             android:label="@string/mainPageLabel">
             <intent-filter>

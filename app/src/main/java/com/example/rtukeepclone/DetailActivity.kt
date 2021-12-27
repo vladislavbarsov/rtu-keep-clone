@@ -30,8 +30,8 @@ class DetailActivity : AppCompatActivity() {
         noteToEdit = notesDatabase.noteItemDao().getNoteById(noteId)
         editNoteColor = noteToEdit.noteColor
 
-        if (requestFrom != MAIN_ACTIVITY){
-            noteEditSubject.setText(noteToEdit.noteSubject)
+        if (requestFrom != MAIN_ACTIVITY) {
+            noteEditSubject.setText(noteToEdit.noteTitle)
             noteEditBodyText.setText(noteToEdit.noteText)
             detailNoteCard.setCardBackgroundColor(editNoteColor)
             colorBtn.setTextColor(editNoteColor)
@@ -41,10 +41,10 @@ class DetailActivity : AppCompatActivity() {
         colorBtn.setOnClickListener { changeNoteColor() }
     }
 
-    private fun updateNote(){
+    private fun updateNote() {
         notesDatabase.noteItemDao().updateNote(
             noteToEdit.copy(
-                noteSubject = noteEditSubject.text.toString(),
+                noteTitle = noteEditSubject.text.toString(),
                 noteText = noteEditBodyText.text.toString(),
                 noteColor = editNoteColor
             )
@@ -54,33 +54,32 @@ class DetailActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun shareNote(){
+    private fun shareNote() {
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT,
-            "${noteEditSubject.text}\n\n${noteEditBodyText.text}")
+            putExtra(Intent.EXTRA_TEXT, "${noteEditSubject.text}\n\n${noteEditBodyText.text}")
             type = "text/plain"
         }
         startActivity(sendIntent)
     }
 
-    private fun changeNoteColor(){
+    private fun changeNoteColor() {
         val builder = AlertDialog.Builder(this)
         val colors = arrayOf("Coral", "Teal", "Green")
         builder.setTitle("Choose Color")
-            .setItems(colors) {dialog, which ->
+            .setItems(colors) {_, which ->
                 updateColor(which)
             }
         val dialog = builder.create()
         dialog.show()
     }
 
-    private fun updateColor(colorPosition: Int){
-        val color = when (colorPosition){
+    private fun updateColor(colorPosition: Int) {
+        val color = when (colorPosition) {
             0 -> ContextCompat.getColor(this, R.color.colorCardCoral)
             1 -> ContextCompat.getColor(this, R.color.colorCardTeal)
             2 -> ContextCompat.getColor(this, R.color.colorCardGreen)
-            else -> ContextCompat.getColor(this, R.color.colorCardGreen)
+            else -> ContextCompat.getColor(this, R.color.colorCardCoral)
         }
         colorBtn.setTextColor(color)
         detailNoteCard.setCardBackgroundColor(color)
@@ -88,7 +87,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId){
+        return when (item.itemId) {
             android.R.id.home -> {
                 finish()
                 true

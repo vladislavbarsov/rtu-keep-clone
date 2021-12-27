@@ -5,7 +5,7 @@ import androidx.room.*
 
 @Entity(tableName = "note_item")
 data class NoteItem (
-    val noteSubject: String,
+    val noteTitle: String,
     val noteText: String,
     val noteColor: Int,
     @PrimaryKey(autoGenerate = true) var uid: Long = 0

@@ -57,7 +57,8 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
         if (
             requestCode == REQUEST_CODE_DETAILS &&
             resultCode == Activity.RESULT_OK &&
-            data != null) {
+            data != null
+        ) {
             val noteId = data.getLongExtra(EXTRA_ID, 0)
             val note = notesDatabase.noteItemDao().getNoteById(noteId)
             val position = notes.indexOfFirst{ it.uid == note.uid }
@@ -68,9 +69,9 @@ class MainActivity : AppCompatActivity(), AdapterClickListener {
     }
 
     private fun checkForEmptyNote(){
-        if (!notes.isEmpty()){
+        if (notes.isNotEmpty()){
             val lastNote = notes[0]
-            if (lastNote.noteSubject == "" && lastNote.noteText == ""){
+            if (lastNote.noteTitle == "" && lastNote.noteText == ""){
                 notes.remove(lastNote)
                 notesDatabase.noteItemDao().deleteNote(lastNote)
             }
